@@ -21,3 +21,36 @@ go run app.go
 ```
 curl '127.0.0.1:8080/add_job'
 ```
+
+- 项目结构
+
+```
+.
+├── README.md
+├── app
+│   ├── controller
+│   │   └── index
+│   │       └── index.go       //测试web接口
+│   └── jobs                   //任务都写写到这个目录下
+│       └── exportJob
+│           └── exportJob.go   //测试任务代码
+├── app.go
+├── config.yaml                //配置文件
+├── configs
+│   └── constants
+│       └── constants.go       //任务参数设置
+├── core                       
+│   ├── job
+│   │   └── job.go             //任务运行方法
+│   └── topic
+│       └── topic.go           //任务消息推送方法
+├── cron.go
+├── go.mod
+├── go.sum
+├── helpers
+│   └── util
+│       └── util.go            //反射调用包、方法
+└── service
+    └── service_redis
+        └── service_redis.go   //redis client
+```
