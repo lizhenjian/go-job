@@ -116,7 +116,7 @@ func timerListCheck() {
 						if err := cmd.Start(); err != nil {
 							log.Panicf("failed to run command: %s", err)
 						}
-						logrus.Infoln("timerListCheck 一次性拉起多个进程", "dynamicProcess:"+topic.Name, cmd.Process.Pid)
+						logrus.Infoln("timerListCheck 一次性拉起多个dynamicProcess", "dynamicProcess:"+topic.Name, cmd.Process.Pid)
 						err := cmd.Wait()
 						if err != nil {
 							log.Panicf("timerListCheck failed to wait command: %s", err)

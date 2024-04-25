@@ -16,11 +16,11 @@ var TimerProcessCheck = 2 //进程检查时间间隔
 var TimerListCheck = 5    //队列长度检查
 
 type Topic struct {
-	PkgName                string
-	Name                   string
-	WorkerMinNum           int64
-	WorkerMaxNum           int64
-	WorkerMaxPendingLength int64
+	PkgName                string //包名
+	Name                   string //方法名
+	WorkerMinNum           int64  //最小工作进程数
+	WorkerMaxNum           int64  //最大工作进程数
+	WorkerMaxPendingLength int64  //最大队列长度
 }
 
 var ImportedFunctions unsafe.Pointer = nil
