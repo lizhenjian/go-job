@@ -57,7 +57,6 @@ func RegisterFunction(packageName, funcName string, function interface{}) {
 	}
 	importedFunctionsTemp[packageName][funcName] = function
 	atomic.StorePointer(&constants.ImportedFunctions, unsafe.Pointer(&importedFunctionsTemp))
-	fmt.Println(constants.ImportedFunctions)
 }
 
 // 调用包下面的方法

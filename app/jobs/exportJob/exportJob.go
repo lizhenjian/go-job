@@ -9,5 +9,5 @@ import (
 func HandleExportJob(data string) {
 	fmt.Println("HandleExportJob___________________________")
 	fmt.Println(data)
-	time.Sleep(5 * time.Second)
+	time.Sleep(1 * time.Second)
 }

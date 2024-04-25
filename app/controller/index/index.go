@@ -13,7 +13,7 @@ var rdb *redis.Client
 
 func AddTestJob(c *gin.Context) {
 	//循环添加10个测试任务
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 1000; i++ {
 		jobData := map[string]interface{}{
 			"file": "fileName",
 			"id":   i,

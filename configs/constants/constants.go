@@ -26,6 +26,6 @@ type Topic struct {
 var ImportedFunctions unsafe.Pointer = nil
 
 var Topics = []Topic{
-	{PkgName: "exportJob", Name: "HandleExportJob", WorkerMinNum: 1, WorkerMaxNum: 5, WorkerMaxPendingLength: 50},
-	{PkgName: "importJob", Name: "HandleImportJob", WorkerMinNum: 1, WorkerMaxNum: 5, WorkerMaxPendingLength: 50},
+	{PkgName: "exportJob", Name: "HandleExportJob", WorkerMinNum: 2, WorkerMaxNum: 5, WorkerMaxPendingLength: 50},
+	{PkgName: "importJob", Name: "HandleImportJob", WorkerMinNum: 2, WorkerMaxNum: 5, WorkerMaxPendingLength: 50},
 }

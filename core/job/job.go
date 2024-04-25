@@ -1,12 +1,13 @@
 package job
 
 import (
-	"fmt"
 	"go-jobs/app/jobs/exportJob"
 	"go-jobs/configs/constants"
 	"go-jobs/helpers/util"
 	"go-jobs/service/service_redis"
 	"time"
+
+	"github.com/sirupsen/logrus"
 )
 
 type MyStruct struct {
@@ -20,7 +21,7 @@ type MyStruct struct {
  * @param {string} topicName
  */
 func Run(PkgName string, topicName string) {
-	fmt.Println(topicName + " is running")
+	logrus.Infoln(topicName + " is running")
 	//TODO动态注册业务方法
 	util.RegisterFunction(PkgName, topicName, exportJob.HandleExportJob)
 	i := 0
@@ -28,30 +29,30 @@ func Run(PkgName string, topicName string) {
 		//单进程最大执行任务次数
 		i++
 		if i >= constants.MaxPopNum {
-			fmt.Println("MaxPopNum:", constants.MaxPopNum)
+			logrus.Infoln("MaxPopNum:", constants.MaxPopNum)
 			break
 		}
 		//拉取Redis队列消息
 		rdb := service_redis.NewClient()
 		jobParams, err := rdb.RPop(topicName).Result()
 		if err != nil {
-			fmt.Println("Pop data error:", err, topicName)
+			logrus.Infoln("Pop data error:", err, topicName)
 			//队列没有消息停留一秒
 			time.Sleep(time.Duration(constants.Sleep) * time.Second)
 		}
 		if jobParams != "" {
-			fmt.Println("Popped data:", jobParams, topicName)
+			logrus.Infoln("Popped data:", jobParams, topicName)
 			//通过包名和方法名动态调用业务方法
 			funcName := topicName
 			args := []interface{}{jobParams}
 			results, err := util.Eval(PkgName, funcName, args...)
 			if err != nil {
-				fmt.Println("Error:", err)
+				// logrus.Infoln("Error:", err)
 				return
 			}
-			fmt.Println(results)
+			logrus.Infoln(topicName, results)
 		}
 	}
 	//进程退出
-	fmt.Println(topicName + " is exit")
+	logrus.Infoln(topicName + " is exit")
 }
