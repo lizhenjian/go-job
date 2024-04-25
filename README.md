@@ -56,3 +56,6 @@ curl '127.0.0.1:8080/add_job'
 ```
 运行截图：
 ![image](https://github.com/lizhenjian/go-job/assets/8486305/6107c1c7-c350-4959-9364-cae87391ed4a)
+
+体系架构图
+![image](https://github.com/lizhenjian/go-job/assets/8486305/b12119ed-aa2a-44c0-a901-f3c4b490f550)
