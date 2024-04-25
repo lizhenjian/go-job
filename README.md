@@ -52,5 +52,8 @@ curl '127.0.0.1:8080/add_job'
 │       └── util.go            //反射调用包、方法
 └── service
     └── service_redis
+
+![image](https://github.com/lizhenjian/go-job/assets/8486305/6107c1c7-c350-4959-9364-cae87391ed4a)
+
         └── service_redis.go   //redis client
 ```
