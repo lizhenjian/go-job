@@ -1,13 +1,31 @@
 package constants
 
-import "unsafe"
+import (
+	"unsafe"
+)
 
-var LogPath = ""
-var LogSaveFileApp = "application.log" //默认log存储名字
-var LogSaveFileWorker = "crontab.log"  // 进程启动相关log存储名字
-var PidPath = ""                       // 默认pid存储路径
-var Sleep = 2                          // 队列没消息时，暂停秒数
-var ProcessName = "goJobTopicQueue"    // 设置进程名, 方便管理, 默认值 goJobTopicQueue
+var Sleep = 2                                      // 队列没消息时，暂停秒数
+var ProcessNameStatic = "goJobTopicQueueStatic:"   // 设置静态进程名, 方便管理, 默认值 goJobTopicQueueStatic
+var ProcessNameDynamic = "goJobTopicQueueDynamic:" // 设置动态进程名, 方便管理, 默认值 goJobTopicQueueDynamic
+
+var LogConf = struct {
+	Dir                string `yaml:"dir"`
+	ApplicationLogName string `yaml:"application_log_name"`
+	ProcessLogName     string `yaml:"application_log_name"`
+	Level              int    `yaml:"level"`
+	MaxSize            int    `yaml:"max_size"`
+	MaxBackups         int    `yaml:"max_backups"`
+	MaxAge             int    `yaml:"max_age"`
+	LocalTime          bool   `yaml:"local_time"`
+}{
+	Dir:                "./logs",
+	ApplicationLogName: "application.log", //默认log存储名字
+	ProcessLogName:     "process.log",     //默认log存储名字
+	MaxSize:            100,               // 日志文件最大 size(MB)，缺省 100MB。
+	MaxBackups:         5,                 // 最大过期日志保留的个数。
+	MaxAge:             30,                // 保留过期文件的最大时间间隔，单位是天。
+	LocalTime:          true,              // 是否使用本地时间来命名备份的日志。
+}
 
 var MessageFunc = ""      //消息通知函数
 var Token = ""            //消息oken
