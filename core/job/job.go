@@ -1,8 +1,8 @@
 package job
 
 import (
-	"go-jobs/app/jobs/exportJob"
 	"go-jobs/configs/constants"
+	"go-jobs/configs/register"
 	"go-jobs/helpers/loger"
 	"go-jobs/helpers/util"
 	"go-jobs/service/service_redis"
@@ -13,6 +13,7 @@ type MyStruct struct {
 }
 
 var LogApp = loger.InitLoggerApplication()
+var LogError = loger.InitLoggerError()
 
 /**
  * @Author: lizhenjian
@@ -23,8 +24,7 @@ var LogApp = loger.InitLoggerApplication()
  */
 func Run(PkgName string, topicName string) {
 	LogApp.Infoln(topicName + " is running")
-	//TODO动态注册业务方法
-	util.RegisterFunction(PkgName, topicName, exportJob.HandleExportJob)
+	register.RegisterFunc()
 	i := 0
 	for {
 		//单进程最大执行任务次数
@@ -48,7 +48,7 @@ func Run(PkgName string, topicName string) {
 			args := []interface{}{jobParams}
 			results, err := util.Eval(PkgName, funcName, args...)
 			if err != nil {
-				// logrus.Infoln("Error:", err)
+				LogError.Errorln("Error:", err)
 				return
 			}
 			LogApp.Infoln(topicName, results)

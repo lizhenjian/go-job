@@ -5,9 +5,10 @@ import (
 	"time"
 )
 
-// 自定义任务方法都写在这个jobs目录下面
+// 测试导出任务方法
 func HandleExportJob(data string) {
-	fmt.Println("HandleExportJob___________________________")
+	fmt.Println("--------------HandleExportJob--------------")
 	fmt.Println(data)
+	fmt.Println("--------------HandleExportJob--------------")
 	time.Sleep(1 * time.Second)
 }

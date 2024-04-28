@@ -12,6 +12,7 @@ var LogConf = struct {
 	Dir                string `yaml:"dir"`
 	ApplicationLogName string `yaml:"application_log_name"`
 	ProcessLogName     string `yaml:"application_log_name"`
+	ErrorLogName       string `yaml:"error_log_name"`
 	Level              int    `yaml:"level"`
 	MaxSize            int    `yaml:"max_size"`
 	MaxBackups         int    `yaml:"max_backups"`
@@ -21,6 +22,7 @@ var LogConf = struct {
 	Dir:                "./logs",
 	ApplicationLogName: "application.log", //默认log存储名字
 	ProcessLogName:     "process.log",     //默认log存储名字
+	ErrorLogName:       "error.log",       //默认log存储名字
 	MaxSize:            100,               // 日志文件最大 size(MB)，缺省 100MB。
 	MaxBackups:         5,                 // 最大过期日志保留的个数。
 	MaxAge:             30,                // 保留过期文件的最大时间间隔，单位是天。

@@ -51,7 +51,11 @@ func CallMethod(instance interface{}, methodName string, args ...interface{}) ([
 // var importedFunctions = make(map[string]map[string]interface{})
 // 注册
 func RegisterFunction(packageName, funcName string, function interface{}) {
+	importedCheck := atomic.LoadPointer(&constants.ImportedFunctions)
 	var importedFunctionsTemp = make(map[string]map[string]interface{})
+	if importedCheck != nil {
+		importedFunctionsTemp = *(*map[string]map[string]interface{})(atomic.LoadPointer(&constants.ImportedFunctions))
+	}
 	if importedFunctionsTemp[packageName] == nil {
 		importedFunctionsTemp[packageName] = make(map[string]interface{})
 	}
